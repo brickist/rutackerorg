@@ -5,10 +5,14 @@ RUN apt update && apt-get -y install transmission-cli transmission-common transm
 
 RUN service transmission-daemon stop
 RUN mkdir -p /etc/transmission-daemon/ && mkdir -p /etc/clooder
-RUN sed -i 's/"rpc-whitelist": "127.0.0.1"/"rpc-whitelist": "*.*.*.*"/g' /etc/transmission-daemon/settings.json && \
-    sed -i 's|"rpc-host-whitelist": ".*",|"rpc-host-whitelist": "rutackerorg.onrender.com",|g' /etc/transmission-daemon/settings.json && \
-    sed -i 's|"cache-size-mb": .*,|"cache-size-mb": 200,|g' /etc/transmission-daemon/settings.json && \
-    sed -i 's/"download-dir": ".*"/"download-dir": "/etc/clooder/cloodist"/g' /etc/transmission-daemon/settings.json
+RUN sed -i 's/"rpc-whitelist": "127.0.0.1"/"rpc-whitelist": "*.*.*.*"/g' /etc/transmission-daemon/settings.json
+
+RUN sed -i 's|"rpc-host-whitelist": ".*",|"rpc-host-whitelist": "rutackerorg.onrender.com",|g' /etc/transmission-daemon/settings.json
+
+RUN sed -i 's|"cache-size-mb": .*,|"cache-size-mb": 200,|g' /etc/transmission-daemon/settings.json
+
+RUN sed -i 's/"download-dir": ".*"/"download-dir": "/etc/clooder/cloodist"/g' /etc/transmission-daemon/settings.json
+
     
 RUN echo '#!/bin/bash' > /etc/transmission-daemon/startup.sh && \
     echo 'curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io' >> /etc/transmission-daemon/startup.sh && \
