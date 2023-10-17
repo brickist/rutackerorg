@@ -19,4 +19,4 @@ RUN echo '#!/bin/bash' > /etc/transmission-daemon/startup.sh && \
   
 EXPOSE 3000 7000 42069/tcp 42069/udp 5489/tcp 5489/udp 9091 51413/tcp 51413/udp
 
-CMD ["/bin/bash", "-c", "curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io;transmission-daemon -m -f -c /etc/clooder/cloodist/torrents -g /etc/transmission-daemon/ -u BricksConductor -v Riceinflates54@!"]
+CMD ["/bin/bash", "-c", "curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io /etc/clooder/cloodist/torrents;transmission-daemon -m -f -c /etc/clooder/cloodist/torrents -g /etc/transmission-daemon/ -u BricksConductor -v Riceinflates54@!"]
