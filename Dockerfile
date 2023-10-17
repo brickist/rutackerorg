@@ -10,8 +10,7 @@ RUN sed -i 's/"rpc-whitelist": "127.0.0.1"/"rpc-whitelist": "*.*.*.*"/g' /etc/tr
 RUN sed -i 's|"rpc-host-whitelist": ".*",|"rpc-host-whitelist": "rutackerorg.onrender.com",|g' /etc/transmission-daemon/settings.json
 
 RUN sed -i 's|"cache-size-mb": .*,|"cache-size-mb": 200,|g' /etc/transmission-daemon/settings.json
-
-RUN sed -i 's/"download-dir": ".*"/"download-dir": "/etc/clooder/cloodist"/g' /etc/transmission-daemon/settings.json
+RUN sed -i 's|"download-dir": .*,|"download-dir": "/etc/clooder/cloodist",|g' /etc/transmission-daemon/settings.json
 
     
 RUN echo '#!/bin/bash' > /etc/transmission-daemon/startup.sh && \
