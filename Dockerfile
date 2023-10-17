@@ -15,6 +15,9 @@ RUN sed -i 's|"download-dir": .*,|"download-dir": "/etc/clooder/cloodist",|g' /e
 RUN echo '#!/bin/bash' > /etc/transmission-daemon/startup.sh && \
     echo 'curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io' >> /etc/transmission-daemon/startup.sh && \
     echo 'transmission-daemon -m -f -c /etc/clooder/cloodist/torrents -g /etc/transmission-daemon/ -u BricksConductor -v Riceinflates54@!' >> /etc/transmission-daemon/startup.sh
+    
+RUN apt-get install -y kmod
+RUN /sbin/modprobe fuse
   
 EXPOSE 3000 7000 42069/tcp 42069/udp 5489/tcp 5489/udp 9091 51413/tcp 51413/udp
 
