@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 
-RUN apt update && apt-get -y install transmission-cli transmission-common transmission-daemon curlftpfs
+RUN apt update && apt-get -y install transmission-cli transmission-common transmission-daemon curlftpfs fuse
 
 RUN service transmission-daemon stop
 RUN mkdir -p /etc/transmission-daemon/ && mkdir -p /etc/clooder/
@@ -18,4 +18,4 @@ RUN echo '#!/bin/bash' > /etc/transmission-daemon/startup.sh && \
   
 EXPOSE 3000 7000 42069/tcp 42069/udp 5489/tcp 5489/udp 9091 51413/tcp 51413/udp
 
-CMD ["/bin/bash", "-c", "apt-get install fuse; curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io /etc/clooder;ls /etc/clooder; modprobe fuse"]
+CMD ["/bin/bash", "-c", "curlftpfs -o ssl,direct_io ftp://ubzRjOLzGBmFko8k:3mDlXTJ9RrQAbliChyeWEsfH0Yoj7AR7UpAxltYr@ftp.tebi.io /etc/clooder;ls /etc/clooder; modprobe fuse"]
